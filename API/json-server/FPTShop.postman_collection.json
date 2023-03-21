@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "352045ef-67f4-4727-a063-b8e59c74ef4d",
+		"name": "FPTShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21145256"
+	},
+	"item": [
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "ĐĂNG KÝ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('test', ()=> {\r",
+									"    var res = pm.response.json();\r",
+									"    var username = res.data.username;\r",
+									"    var phone = res.data.phone;\r",
+									"    var password = res.data.password;\r",
+									"\r",
+									"    pm.collectionVariables.set('username',username);\r",
+									"    pm.collectionVariables.set('phone',phone);\r",
+									"    pm.collectionVariables.set('password',password);\r",
+									"\r",
+									"\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.status).to.equal(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"biennguyen\",\r\n    \"phone\":\"111\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{FPT}}/register",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ĐĂNG KÝ VỚI  SỐ PHONE ĐÃ TỒN TẠI",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"nguyenbien\",\r\n    \"phone\":\"012456789\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{FPT}}/register",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ĐĂNG NHẬP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{FPT}}/login",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ĐĂNG NHẬP VỚI SỐ PHONE SAI",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{FPT}}/login",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TOÀN BỘ USER",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{FPT}}/auth/users",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"auth",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TÌM KIẾM USER BẰNG PHONE",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PRODUCTS",
+			"item": [
+				{
+					"name": "TOÀN BỘ SẢN PHẨM",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{FPT}}/products",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SẢN PHẨM THEO ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ORDERS",
+			"item": [
+				{
+					"name": "TẤT CẢ ĐƠN HÀNG",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{FPT}}/auth/orders",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"auth",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ĐƠN HÀNG THEO ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{FPT}}/auth/orders/:id",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"auth",
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ĐẶT HÀNG",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{FPT}}/auth/orders",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"auth",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "XÓA ĐƠN HÀNG",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{FPT}}/auth/orders/:id",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"auth",
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{orderId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SỬA ĐƠN HÀNG",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\":\"Thái bình Việt nam\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{FPT}}/auth/orders/:id",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"auth",
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{orderId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ĐẶT HÀNG NHƯNG HÀNG HẾT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\":1,\r\n    \"customerName\":\"{{username}}\",\r\n    \"address\": \"Thái bình\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{FPT}}//auth/orders",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"",
+								"auth",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "XÓA TÀI KHOẢN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set('access_token',null)\r",
+									"postman.setNextRequest()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{FPT}}//auth/users/:phone",
+							"host": [
+								"{{FPT}}"
+							],
+							"path": [
+								"",
+								"auth",
+								"users",
+								":phone"
+							],
+							"variable": [
+								{
+									"key": "phone",
+									"value": "000000000"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "FPT",
+			"value": "http://localhost:3000"
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "productId",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "phone",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "orderId",
+			"value": ""
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		}
+	]
+}
